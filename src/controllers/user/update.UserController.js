@@ -1,3 +1,12 @@
-export function updateUserController(req, res) {
-    res.send("Exemplo de PUT na rota /user respondida pelo Controller")
+import { updateUser } from "../../models/userModels.js"
+
+export async function updateUserController(req, res) {
+    const { id } = req.params
+    const user = req.body
+
+    const result = await updateUser(user, +id)
+
+    return res.json({
+        message: "Usuário atualizado com sucesso", 
+        user: result})
 }

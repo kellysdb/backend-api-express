@@ -17,3 +17,20 @@ export const createUser = async (user) => {
 export const getUser = async () => {
     return await prisma.user.findMany()
 }
+
+export const deleteUser = async (id) => {
+    return await prisma.user.delete({
+        where: { 
+            id 
+        }
+    })
+}
+
+export const updateUser = async (user, id) => {
+    return await prisma.user.update({
+        data: user,
+        where: {
+            id
+        }
+    })
+}
