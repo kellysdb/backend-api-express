@@ -1,0 +1,17 @@
+meta {
+  name: PATCH UpdateUser
+  type: http
+  seq: 1
+}
+
+patch {
+  url: http://localhost:3000/user/15
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "avatar":"https://all"
+  }
+}

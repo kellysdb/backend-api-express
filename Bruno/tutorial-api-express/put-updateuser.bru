@@ -1,0 +1,20 @@
+meta {
+  name: PUT UpdateUser
+  type: http
+  seq: 1
+}
+
+put {
+  url: http://localhost:3000/user/15
+  body: json
+  auth: none
+}
+
+body:json {
+    {
+          "name": "julya",
+          "email": "ju@gmail.com",
+          "pass": "123Teste",
+          "avatar": "https://github.com/ju.png"
+    }
+}

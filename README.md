@@ -67,7 +67,15 @@ Entrada, processamento e saída;
 ORM (Object-Relational Mapping ou Mapeamento Objeto-Relacional), 
 
 - Quais as vantagens de utilizar um ORM?
-- Conseguir trocar de bancos de dados com facildade.
+ Conseguir trocar de bancos de dados com facildade.
+
+- Como utilizar os parametros URL?
+
+- O que é um Middleware? (exemplo Logger)
+Middleware é um padrão de projeto que cria um fluxo de execução de funções, onde cada função é chamada de Middleware.
+
+No express, ele usa 2 objetos:
+req e res.
 
 # Comandos do Prisma
 
