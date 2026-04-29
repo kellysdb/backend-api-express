@@ -1,5 +1,5 @@
-import {prisma} from '../helpers/dbConnection.js';
-
+import { prisma } from "../helpers/dbConnection.js";
+import * as z from "zod";
 // const user = {
 //     name: "Kelly Silva Dantas Barboza",
 //     email:"kellysdb25@example.com",
@@ -7,6 +7,23 @@ import {prisma} from '../helpers/dbConnection.js';
 //     role: "user"
 //     avatar: "https://example.com/avatar.jpg"
 // }
+
+
+const userSchema = z.object({
+    id: z.int().positive(),
+    avatar: z.url().max(500),
+    name: z.string().min(3).max(255),
+    email: z.email(),
+    pass: z.string().min(6).max(255)
+})
+
+export const validateUser = (user, partial = false) => {
+    if (partial) {
+        return userSchema.partial().safeParse(user)
+    }
+    return userSchema.safeParse(user)
+}
+
 
 export const createUser = async (user) => {
     return await prisma.user.create({
