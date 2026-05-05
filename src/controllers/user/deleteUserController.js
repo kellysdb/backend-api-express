@@ -4,9 +4,19 @@ import { deleteUser } from "../../models/userModels.js";
 export async function deleteUserController(req, res) {
     const id = req.params.id
 
-    const result = await deleteUser(+id) //operador "+"" para converter string para número
+    const {sucess, error, data} = await deleteUser({id: +id}, {name: true, email: true, avatar: true})
+    
+    if (!sucess) {
+        return res.status(400).json({
+            message: "Error deleting user",
+            fieldErrors: error
+        })
+    }
 
-    return res.json({message: "Usuario deletado com sucesso!",
+    const result = await deleteUser(data.id)
+
+    return res.json({
+        message: "Usuario deletado com sucesso!",
         user: result
     })
 }

@@ -1,5 +1,7 @@
 
 import { createUser, validateUser } from "../../models/userModels.js";
+import { tr } from "zod/locales"
+import { flattenError, treeifyError } from "zod"
 
 export async function createUserController(req, res) {
    
@@ -8,17 +10,18 @@ export async function createUserController(req, res) {
 
 const {success, data, error} = validateUser(user, {id: true})
 
+
 if (!success) {
     return res.status(400).json({
         message: "Error creating user",
-        fieldErrors: error.treeifyErrors().fieldErrors
+        fieldErrors: error.flattenError(error).fieldErrors
     })
 }
 
 const result = await createUser(data)
-
-//    res.json({
-//       message: "User created successfully",
-      //  user: result
-//    })
+   
+    res.json({
+       message: "User created successfully",
+      user: result
+    })
 }
