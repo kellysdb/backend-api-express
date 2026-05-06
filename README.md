@@ -112,7 +112,7 @@ Gera o schema do prisma a partir do banco de dados:
     npx prisma db pull
 
 Gera as funções para interagir com os modelos mapeados no schema:
-    npx prisma generate
+    
 obs. toda vez que alterar o schema, rodar esse comando.
 
 

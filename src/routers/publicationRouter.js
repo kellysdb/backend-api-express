@@ -9,8 +9,8 @@ const router = express.Router()
 
 router.get('/', getPubliController)
 router.post('/', createPubliController)
-router.put('/', updatePubliController)
-router.patch('/', patchTitlePubliController)
-router.delete('/:id', deletePubliController)
+router.put('/:id/', updatePubliController)
+router.patch('/title', patchTitlePubliController)
+router.delete('/:id/', deletePubliController)
 
 export default router

@@ -1,5 +1,5 @@
 
-import { deleteUser } from "../../models/userModels.js";
+import { deleteUser, validateUser } from "../../models/userModels.js";
 
 export async function deleteUserController(req, res) {
     const id = req.params.id

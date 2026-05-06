@@ -8,16 +8,16 @@ datasource db {
 }
 
 model user {
-  id       Int    @id @default(autoincrement())
-  avatar   String @db.VarChar(500)
-  name     String @db.VarChar(255)
-  email    String @unique
-  pass     String @db.VarChar(300)
+  id     Int    @id @default(autoincrement())
+  avatar String @db.VarChar(500)
+  name   String @db.VarChar(255)
+  email  String @unique
+  pass   String @db.VarChar(300)
 }
 
 model publication {
   id          Int    @id @default(autoincrement())
   title       String @db.VarChar(255)
-  description String @db.VarChar(500)
+  description String @db.Text
   author      String @db.VarChar(255)
 }
