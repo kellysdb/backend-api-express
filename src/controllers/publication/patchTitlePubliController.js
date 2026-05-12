@@ -1,4 +1,4 @@
-import { updatePubliController, validatePublication } from "../../models/publicationModels.js";
+import { updatePublication, validatePublication } from "../../models/publicationModels.js";
 
 
 export async function patchTitlePubliController(req, res) {
