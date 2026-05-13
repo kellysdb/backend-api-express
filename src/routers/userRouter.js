@@ -12,5 +12,4 @@ router.put('/:id', updateUserController)
 router.patch('/:id', updateAvatarUserController)
 router.delete('/:id', deleteUserController)
 
-
 export default router
