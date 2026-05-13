@@ -2,6 +2,8 @@ import { updatePublication, validatePublication } from "../../models/publication
 
 
 export async function patchTitlePubliController(req, res) {
+    
+    try {
     const {id} = req.params
     const publication = req.body
 
@@ -19,5 +21,14 @@ export async function patchTitlePubliController(req, res) {
     res.json({
         message: "Publication title updated successfully",
         publication: result
-    })
+    }) 
+    } catch (error) {
+        if (error.message === "Publication not found") {
+            console.error(error.message);
+            return res.status(404).json({
+                message: "Publicação não encontrada para ser atualizada."
+            })
+        }
+        next(error)
+    }
 }
