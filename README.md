@@ -116,3 +116,30 @@ Gera as funções para interagir com os modelos mapeados no schema:
 obs. toda vez que alterar o schema, rodar esse comando.
 
 
+# Proximos topicos
+
+- Para que serve a biblioteca do Zod?
+- Para que serve a função Partial?
+- Qual a diferença do parse para o safeParse?
+
+    Tratamento de erros
+
+- Qual o papel do ErrorHandler?
+Cria um tratamento de erro genérico. Quando é lançado uma exceção.
+
+- Quais erros devem ser tratados pelo ErrorHandler e quais devem ser tratados no try catch do controller?
+
+Controller mensagens mais amigaveis para erros mais especificos.
+ N Respondi tudo
+
+ - Quais os parametros de entrada de um middleware de ErroHandler?
+ Error, req, res e next
+ Não tirar o next(quantidade de parametros do primeiro middleware)
+
+ Responder melhor 
+
+    Query Params (/user/?name=kelly)
+- Como capturar um parametro query da url no Controller?
+- Para que são utilizados em geral os query params?
+Para filtros. 
+ -Autenticação com JwT
