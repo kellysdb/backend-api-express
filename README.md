@@ -119,27 +119,80 @@ obs. toda vez que alterar o schema, rodar esse comando.
 # Proximos topicos
 
 - Para que serve a biblioteca do Zod?
+O Zod é uma biblioteca de validação de dados para JavaScript e TypeScript. Ela serve para definir esquemas e validar informações recebidas pela aplicação, garantindo que os dados estejam no formato correto antes de serem utilizados, como em cadastro de usuários, APIs e formulários.
+
 - Para que serve a função Partial?
+A função Partial transforma todas as propriedades de um objeto em opcionais. É muito utilizada em atualizações (update), quando não é necessário enviar todos os campos do objeto.
+
+Exemplo: em um update de usuário, pode-se alterar apenas o nome sem precisar enviar email e senha.
+
 - Qual a diferença do parse para o safeParse?
+        parse()
+Faz a validação dos dados.
+Se houver erro, lança uma exceção (throw error).
+
+        safeParse()
+Também valida os dados.
+Porém, não lança exceção.
+Retorna um objeto com success: true ou success: false, permitindo tratar o erro de forma mais segura.
+
+    Ou seja, parse interrompe a execução com erro, enquanto safeParse permite verificar o resultado sem quebrar a aplicação.
+
 
     Tratamento de erros
 
 - Qual o papel do ErrorHandler?
 Cria um tratamento de erro genérico. Quando é lançado uma exceção.
+Erros genéricos ou globais da aplicação.
+Exceções inesperadas.
+Erros de servidor e validações centralizadas.
 
 - Quais erros devem ser tratados pelo ErrorHandler e quais devem ser tratados no try catch do controller?
 
 Controller mensagens mais amigaveis para erros mais especificos.
- N Respondi tudo
+
+Erros específicos da regra de negócio.
+Casos em que é necessário retornar mensagens mais amigáveis ou personalizadas ao usuário.
+
+Exemplo:
+
+"Usuário não encontrado" → pode ser tratado no controller.
+"Erro interno do servidor" → normalmente tratado pelo ErrorHandler.
 
  - Quais os parametros de entrada de um middleware de ErroHandler?
- Error, req, res e next
- Não tirar o next(quantidade de parametros do primeiro middleware)
+Um middleware de erro recebe quatro parâmetros:
 
- Responder melhor 
+(error, req, res, next)
+error → objeto do erro lançado.
+req → requisição recebida.
+res → resposta enviada ao cliente.
+next → função de continuidade do middleware.
+
+    O next não deve ser removido, mesmo sem uso, porque a identificação de middleware de erro depende da quantidade de parâmetros. 
 
     Query Params (/user/?name=kelly)
 - Como capturar um parametro query da url no Controller?
+Os query params são capturados usando req.query.
+
+Exemplo:
+URL:
+/user?name=kelly
+
+Controller:
+const { name } = req.query;
+
 - Para que são utilizados em geral os query params?
-Para filtros. 
+Filtros
+Pesquisas
+Ordenação
+Paginação
+Personalização de consultas
+
+Exemplos:
+/products?category=roupa
+
+(Filtro)
+/users?page=2
+
  -Autenticação com JwT
+ A autenticação com JWT (JSON Web Token) é um método de segurança que utiliza tokens para identificar e validar usuários autenticados. Após o login, o servidor gera um token que é enviado ao cliente e usado nas próximas requisições para comprovar a identidade do usuário, sem precisar armazenar sessão no servidor.
