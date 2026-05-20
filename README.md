@@ -116,7 +116,7 @@ Gera as funções para interagir com os modelos mapeados no schema:
 obs. toda vez que alterar o schema, rodar esse comando.
 
 
-# Proximos topicos
+# Proximos topicos - P2
 
 - Para que serve a biblioteca do Zod?
 O Zod é uma biblioteca de validação de dados para JavaScript e TypeScript. Ela serve para definir esquemas e validar informações recebidas pela aplicação, garantindo que os dados estejam no formato correto antes de serem utilizados, como em cadastro de usuários, APIs e formulários.
@@ -194,5 +194,96 @@ Exemplos:
 (Filtro)
 /users?page=2
 
- -Autenticação com JwT
+ - Autenticação com JwT
  A autenticação com JWT (JSON Web Token) é um método de segurança que utiliza tokens para identificar e validar usuários autenticados. Após o login, o servidor gera um token que é enviado ao cliente e usado nas próximas requisições para comprovar a identidade do usuário, sem precisar armazenar sessão no servidor.
+
+ - Quais são as diferenças dos métodos de Autenticação? E como funciona?
+ 
+ - Basic Acess Base64(email:pass)
+  
+  A autenticação Basic Auth funciona enviando usuário e senha codificados em Base64 no cabeçalho da requisição.
+
+Características:
+
+    Usa email e senha em todas as requisições.
+    Base64 não é criptografia, apenas codificação.
+    Depende de HTTPS para maior segurança.
+    Menos utilizado em aplicações modernas.
+
+ - Bearer Token(Opaque)
+
+  O Bearer Token Opaque é um token sem informações legíveis pelo cliente. Ele funciona como um identificador.
+
+Funcionamento:
+
+    O servidor gera o token.
+    O cliente envia esse token nas requisições.
+    O servidor consulta banco ou sessão para validar.
+
+Características:
+
+    Não contém dados visíveis.
+    Requer validação no servidor.
+    Mais seguro para esconder informações.
+    Depende de armazenamento do token no backend.
+
+ - Bearer Token JWT
+ 
+ O JWT (JSON Web Token) é um token que carrega informações do usuário dentro dele mesmo.
+
+Funcionamento:
+
+    Usuário faz login.
+    Servidor gera um JWT assinado.
+    Cliente envia o token nas próximas requisições.
+    O servidor valida assinatura e expiração.
+
+Características:
+
+    Não precisa consultar banco para validar em muitos casos.
+    Contém dados do usuário.
+    É assinado digitalmente.
+    Stateless (sem sessão no servidor).
+    Muito usado em APIs modernas.
+
+ - Bearer Toekn JWT + Refersh Token
+
+ Access Token (JWT)
+
+    Curta duração.
+    Usado para acessar recursos protegidos.
+
+ Refresh Token
+
+    Maior duração.
+    Serve para gerar um novo access token quando ele expira.
+
+Funcionamento:
+
+    Login gera Access Token + Refresh Token.
+    Cliente usa o Access Token.
+    Quando expira, usa o Refresh Token para solicitar outro.
+    Evita que o usuário precise fazer login novamente.
+
+Características:
+
+    Mais seguro.
+    Melhora experiência do usuário.
+    Permite expiração curta do JWT.
+    Muito usado em aplicações modernas.
+
+ - Quais as características dos JWT?
+
+Stateless (sem sessão): não depende de sessão armazenada no servidor.
+Assinado digitalmente: garante autenticidade e integridade do token.
+Compacto: fácil de transportar em headers HTTP.
+Autocontido: pode armazenar informações do usuário e permissões.
+Possui expiração: utiliza campos como exp para definir validade.
+Pode ser validado rapidamente: normalmente sem consulta ao banco.
+Muito usado em APIs REST e autenticação moderna.
+
+    O JWT é dividido em 3 partes:
+
+Header → define algoritmo e tipo do token.
+Payload → contém dados (claims).
+Signature → assinatura que garante segurança e integridade do token.
